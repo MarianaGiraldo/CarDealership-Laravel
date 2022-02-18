@@ -47,6 +47,10 @@ html {
     width: 100%;
     background-color: var(--color4);
   }
+
+  .w-80{
+    width: 80%;
+  }
   
   .container {
     width: 100%;

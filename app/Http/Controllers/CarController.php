@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use App\Http\Requests\StoreCarRequest;
-use App\Http\Requests\UpdateCarRequest;
+use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -36,10 +35,10 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCarRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCarRequest $request)
+    public function store(Request $request)
     {
         // Validates form fields
         $validation = $request->validate([
@@ -58,13 +57,15 @@ class CarController extends Controller
         $car ->year = $request->get('year');
         $car ->category = $request->get('category');
         $car ->price = $request->get('price');
+        $car ->color = $request->get('color');
+        $car ->is_new = ($request->is_new == "true") ? 1 :0;
 
         // Process image to store in database
         $photo = $request->file('image');
         $filename = time() . '.' . $photo->getClientOriginalExtension();
-        $destino=public_path('imagenes/cars/');
-        $request->image->move($destino, $filename);
-        $car ->imagen = $filename;
+        $path=public_path('images/cars/');
+        $request->image->move($path, $filename);
+        $car ->image = $filename;
         
         $car -> save();
         return redirect('/cars');
@@ -99,11 +100,11 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCarRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCarRequest $request, Car $car)
+    public function update(Request $request, $id)
     {
         $carUpdt =  Car::find($id);
         $carUpdt ->brand = $request->get('brand');
@@ -111,13 +112,15 @@ class CarController extends Controller
         $carUpdt ->year = $request->get('year');
         $carUpdt ->category = $request->get('category');
         $carUpdt ->price = $request->get('price');
+        $carUpdt ->color = $request->get('color');
+        $carUpdt ->is_new = ($request->is_new == "true") ? 1 :0;
 
         // Process image to store in database
         $photo = $request->file('image');
         $filename = time() . '.' . $photo->getClientOriginalExtension();
-        $destino=public_path('imagenes/cars/');
-        $request->image->move($destino, $filename);
-        $carUpdt ->imagen = $filename;
+        $path=public_path('images/cars/');
+        $request->image->move($path, $filename);
+        $carUpdt ->image = $filename;
         
         $carUpdt -> save();
         return redirect('/cars');
