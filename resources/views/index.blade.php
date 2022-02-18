@@ -4,7 +4,7 @@
 <div class="parallax-container mt-0">
     <div class="parallax-index">
         <br><br><br>
-        <div class="bg-light col-sm-6 col-md-3 m-auto p-4 rounded">
+        <div class="bg-light col-sm-6 col-md-4 m-auto p-4 rounded">
             <p class="text-center" style="font-family: MarkingPen; color:#f7941d; font-size: 8vh">Car Dealership</p>
             <p class="text-center" style="font-family: MarkingPen; color:#f7941d; font-size: 6vh">This is where you can find the best</p>
 
