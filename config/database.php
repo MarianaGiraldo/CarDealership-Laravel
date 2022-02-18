@@ -99,7 +99,7 @@ return [
             'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD'),
             'options' => [
-                'database' => 'carsale_db' // sets the authentication database required by mongo 3
+                'database' => 'cardealership_db' // sets the authentication database required by mongo 3
             ]
         ],
 
